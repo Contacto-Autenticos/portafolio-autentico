@@ -2822,8 +2822,8 @@ body {
 
   .marquee-row--forward .marquee-track,
   .marquee-row--backward .marquee-track {
-    animation-duration: 15s;
-    /* Slightly faster on small screens for effect */
+    animation-duration: 8s;
+    /* Much faster on small screens for effect */
   }
 }
 
