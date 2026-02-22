@@ -785,11 +785,13 @@ body {
 }
 
 .modal__title {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 8vw, 2rem);
   font-weight: 800;
   margin-bottom: 24px;
   color: var(--gold);
   flex-shrink: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .modal__img {
@@ -1639,11 +1641,13 @@ body {
 
 .modal-prog__title {
   color: var(--gold);
-  font-size: 2.2rem;
+  font-size: clamp(1.4rem, 8vw, 2.2rem);
   font-weight: 800;
   line-height: 1.1;
   text-transform: uppercase;
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .modal-prog__subtitle {
