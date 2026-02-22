@@ -2072,6 +2072,14 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .about-grid--reversed .about-text {
+    order: 1;
+  }
+
+  .about-grid--reversed .about-visual {
+    order: 2;
+  }
+
   .about-card {
     display: flex;
     margin: 32px 0;
