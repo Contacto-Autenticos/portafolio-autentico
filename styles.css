@@ -2066,7 +2066,8 @@ body {
   }
 
   .about-card {
-    display: none;
+    display: flex;
+    margin: 32px 0;
   }
 
   .ruta-wrapper {
