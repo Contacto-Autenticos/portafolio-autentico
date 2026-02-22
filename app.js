@@ -217,6 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modal) {
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Scroll to top of the modal content when opened
+            const modalContent = modal.querySelector('.modal__content');
+            if (modalContent) {
+                modalContent.scrollTop = 0;
+            }
         }
     };
 
