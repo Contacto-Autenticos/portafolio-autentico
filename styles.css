@@ -812,7 +812,13 @@ body {
   }
 
   .bento-box--1 {
-    padding-top: 240px;
+    padding-top: 0;
+  }
+
+  .bento-box-1__img-wrapper {
+    margin-top: -20px;
+    margin-bottom: 0;
+    min-height: auto;
   }
 
   .bento-box-1__img {
