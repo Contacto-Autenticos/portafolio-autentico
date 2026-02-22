@@ -159,6 +159,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
 
+                // Add FormSubmit configurations
+                data["_subject"] = "Nuevo mensaje de contacto - Portafolio Auténticos";
+                data["_template"] = "table";
+
                 // Send to FormSubmit API
                 const response = await fetch("https://formsubmit.co/ajax/contacto@autenticos.co", {
                     method: "POST",
