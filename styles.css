@@ -809,17 +809,18 @@ body {
   .bento-box--1 {
     grid-column: span 2;
     order: 1;
-    padding-top: 0;
+    padding-top: 24px;
+    padding-bottom: 0;
   }
 
   .bento-box-1__img-wrapper {
-    margin-top: -20px;
+    margin-top: 0;
     margin-bottom: 0;
     min-height: auto;
   }
 
   .bento-box-1__img {
-    max-width: 260px;
+    max-width: 280px;
   }
 
   .bento-box--5 {
@@ -849,6 +850,27 @@ body {
 
   .bento-box--2 {
     order: 3;
+    padding: 12px;
+  }
+
+  .bento-box-2__title {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+  }
+
+  .bento-socials {
+    gap: 10px;
+  }
+
+  .bento-social {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .bento-social svg {
+    width: 18px;
+    height: 18px;
   }
 
   .bento-box--3 {
