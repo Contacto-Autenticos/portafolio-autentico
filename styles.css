@@ -2762,17 +2762,11 @@ body {
   flex-shrink: 0;
   width: 234px;
   height: 143px;
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   transition: var(--transition);
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .marquee-item img {
@@ -2784,10 +2778,7 @@ body {
 }
 
 .marquee-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--gold);
   transform: scale(1.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(221, 190, 61, 0.2);
 }
 
 .marquee-item:hover img {
