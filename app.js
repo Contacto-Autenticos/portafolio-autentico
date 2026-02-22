@@ -146,20 +146,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const btnText = submitBtn.querySelector('.btn-text');
             const btnIcon = submitBtn.querySelector('.btn-icon');
+            const originalText = btnText.textContent;
+            const originalIcon = btnIcon.textContent;
+
+            // UI Feedback: Sending
             submitBtn.disabled = true;
-            btnText.textContent = 'Enviando…';
+            btnText.textContent = 'Enviando...';
             btnIcon.textContent = '⟳';
+            btnIcon.style.animation = 'spin 1s linear infinite';
 
-            // Simulate async send (replace with a real endpoint if needed)
-            await new Promise(resolve => setTimeout(resolve, 1400));
+            try {
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
 
-            submitBtn.disabled = false;
-            btnText.textContent = 'Enviar mensaje';
-            btnIcon.textContent = '→';
-            form.reset();
-            success.classList.add('show');
+                // Send to FormSubmit API
+                const response = await fetch("https://formsubmit.co/ajax/contacto@autenticos.co", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
 
-            setTimeout(() => success.classList.remove('show'), 5000);
+                if (response.ok) {
+                    form.reset();
+                    success.classList.add('show');
+                    setTimeout(() => success.classList.remove('show'), 5000);
+                } else {
+                    alert('Hubo un error al enviar el mensaje. Por favor intenta de nuevo.');
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert('No se pudo establecer conexión. Verifica tu internet.');
+            } finally {
+                submitBtn.disabled = false;
+                btnText.textContent = originalText;
+                btnIcon.textContent = originalIcon;
+                btnIcon.style.animation = '';
+            }
         });
     }
 
