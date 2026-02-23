@@ -2774,22 +2774,24 @@ body {
 
 .marquee-row {
   display: flex;
-  width: 100vw;
+  width: 100%;
 }
 
 .marquee-track {
   display: flex;
   gap: 1px;
   width: max-content;
+  flex-shrink: 0;
+  will-change: transform;
 }
 
 /* Animation directions - 2 rows only */
 .marquee-row--forward .marquee-track {
-  animation: marquee-forward 20s linear infinite;
+  animation: marquee-forward 35s linear infinite;
 }
 
 .marquee-row--backward .marquee-track {
-  animation: marquee-backward 20s linear infinite;
+  animation: marquee-backward 35s linear infinite;
 }
 
 .marquee-item {
@@ -2865,8 +2867,8 @@ body {
 
   .marquee-row--forward .marquee-track,
   .marquee-row--backward .marquee-track {
-    animation-duration: 8s;
-    /* Much faster on small screens for effect */
+    animation-duration: 25s;
+    /* Reasonable speed on mobile to show all objects without stuttering */
   }
 }
 
