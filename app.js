@@ -282,7 +282,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close button listeners (delegated)
     document.addEventListener('click', (e) => {
+        // Close 'X' button
         if (e.target.closest('.modal__close')) {
+            const modal = e.target.closest('.modal');
+            if (modal) closeModal(modal.id);
+        }
+        // Back arrow button at bottom
+        if (e.target.closest('.modal__back')) {
             const modal = e.target.closest('.modal');
             if (modal) closeModal(modal.id);
         }
