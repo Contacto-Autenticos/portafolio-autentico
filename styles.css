@@ -927,11 +927,12 @@ body {
 
   .bento-box-1__img-wrapper {
     margin-top: 0;
-    margin-bottom: 0;
-    min-height: auto;
+    margin-bottom: 20px;
+    min-height: 280px;
+    /* Prevent collapse on mobile */
   }
 
-  .bento-box-1__img {
+  .h-hero-carousel__img {
     max-width: 280px;
   }
 
