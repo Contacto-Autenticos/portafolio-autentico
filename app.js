@@ -551,3 +551,70 @@ document.addEventListener('DOMContentLoaded', () => {
     startTimer();
 })();
 
+// ===========================
+// HORIZONTAL HERO CAROUSEL
+// ===========================
+(function initHorizontalHeroCarousels() {
+    document.querySelectorAll('.h-hero-carousel').forEach(carousel => {
+        const slides = carousel.querySelectorAll('.h-hero-carousel__slide');
+        const dots = carousel.querySelectorAll('.h-hero-carousel__dot');
+        const interval = parseInt(carousel.dataset.interval, 10) || 5000;
+
+        if (!slides.length) return;
+
+        let current = 0;
+        let timer = null;
+        let isPaused = false;
+
+        function goTo(idx) {
+            const prev = current;
+            current = (idx + slides.length) % slides.length;
+
+            // Mark old slide as leaving
+            slides[prev].classList.remove('active');
+            slides[prev].classList.add('leaving');
+
+            // After transition ends, clean up
+            slides[prev].addEventListener('transitionend', function cleanup(e) {
+                if (e.propertyName !== 'opacity') return;
+                slides[prev].classList.remove('leaving');
+                slides[prev].removeEventListener('transitionend', cleanup);
+            });
+
+            // Activate new slide
+            slides[current].classList.add('active');
+
+            // Update dots
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === current);
+                dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+            });
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timer = setInterval(() => {
+                if (!isPaused) goTo(current + 1);
+            }, interval);
+        }
+
+        // Dot click — manual navigation
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation(); // prevent triggering parent clicks if any
+                if (i === current) return;
+                goTo(i);
+                startTimer();
+            });
+        });
+
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => { isPaused = true; });
+        carousel.addEventListener('mouseleave', () => { isPaused = false; });
+
+        // Kick off
+        startTimer();
+    });
+})();
+
+
