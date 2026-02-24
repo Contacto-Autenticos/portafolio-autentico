@@ -467,3 +467,87 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 })();
 
+// ===========================
+// HORIZONTAL TESTIMONIALS CAROUSEL
+// ===========================
+(function initTestimonialsCarousel() {
+    const carousel = document.getElementById('testimonialsCarousel');
+    const track = carousel?.querySelector('.testimonials-track');
+    const dots = carousel?.querySelectorAll('.h-carousel__dot');
+
+    if (!carousel || !track || !dots.length) return;
+
+    let currentIdx = 0;
+    const items = track.querySelectorAll('.testimonial-card');
+    const totalItems = items.length;
+    let timer = null;
+    let isPaused = false;
+
+    function getVisibleItems() {
+        if (window.innerWidth > 1024) return 3;
+        if (window.innerWidth > 768) return 2;
+        return 1;
+    }
+
+    function updateCarousel() {
+        const visibleItems = getVisibleItems();
+        const maxIdx = Math.max(0, totalItems - visibleItems);
+
+        // Clamp current index
+        if (currentIdx > maxIdx) currentIdx = maxIdx;
+
+        const gap = 24; // matches CSS gap
+        const itemWidth = items[0].offsetWidth;
+        const offset = currentIdx * (itemWidth + gap);
+
+        track.style.transform = `translateX(-${offset}px)`;
+
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIdx);
+        });
+    }
+
+    function next() {
+        const visibleItems = getVisibleItems();
+        const maxIdx = Math.max(0, totalItems - visibleItems);
+
+        if (currentIdx < maxIdx) {
+            currentIdx++;
+        } else {
+            currentIdx = 0;
+        }
+        updateCarousel();
+    }
+
+    function startTimer() {
+        stopTimer();
+        timer = setInterval(() => {
+            if (!isPaused) next();
+        }, 5000);
+    }
+
+    function stopTimer() {
+        if (timer) clearInterval(timer);
+    }
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            currentIdx = i;
+            updateCarousel();
+            startTimer();
+        });
+    });
+
+    carousel.addEventListener('mouseenter', () => isPaused = true);
+    carousel.addEventListener('mouseleave', () => isPaused = false);
+
+    window.addEventListener('resize', () => {
+        updateCarousel();
+    });
+
+    // Initial setup
+    updateCarousel();
+    startTimer();
+})();
+
